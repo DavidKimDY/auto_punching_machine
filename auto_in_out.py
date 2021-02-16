@@ -7,7 +7,7 @@ from datetime import datetime
 
 def send_slack_message(message):
     payload = '{"text": "%s"}' % message.encode('utf-8').decode('latin-1')
-    response = requests.post('https://hooks.slack.com/services/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',
+    response = requests.post('https://hooks.slack.com/services/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',
                              data = payload)
     print(response.text)
 
@@ -20,11 +20,13 @@ def main(argv):
         opts, args = getopt.getopt(argv, "hm:", ["message="])
 
     except getopt.GetoptError:
-        print('SlackMessage.py -m <message>')
+        print('auto_in_out.py -m <message>')
+        print('message: in or out')
         sys.exit(2)
 
     if len(opts) == 0:
-        message = "HELLO, WORLD!"
+        print('auto_in_out.py -m <message>')
+        print('message: in or out')
 
     for opt, arg in opts:
         if opt == '-h':
@@ -36,7 +38,7 @@ def main(argv):
             elif arg == 'out':
                 message = date + ' ' + '퇴근'
             else :
-                print("input 'in' or 'out'")
+                print("input in or out")
 
     send_slack_message(message)
 
